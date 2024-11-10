@@ -55,11 +55,28 @@ class ConnectFour {
       return false;
     }
 
+    let checkVerticalWin = (move) => {
+      for (let col = 0; col < grid[0].length; col++) {
+        for (let row = 0; row <= (grid.length - 4); row++) {
+          if (
+            grid[row + 0][col] === move &&
+            grid[row + 1][col] === move &&
+            grid[row + 2][col] === move &&
+            grid[row + 3][col] === move
+          ) {
+              return true;
+          }
+        }
+      }
+      return false;
+    }
 
-    if (checkHorizontalWin("X")) {
+
+
+    if (checkHorizontalWin("X") || checkVerticalWin("X")) {
       return "X";
     }
-    if (checkHorizontalWin("O")) {
+    if (checkHorizontalWin("O") || checkVerticalWin("O")) {
       return "O";
     }
 
