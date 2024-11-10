@@ -71,12 +71,44 @@ class ConnectFour {
       return false;
     }
 
+    let checkDiagonalWin = (move) => {
+      let leftToRightDiagonalWin = false;
+      let rightToLeftDiagonalWin = false;
+
+      for (let col = 0; col <= (grid[0].length - 4); col++) {
+        for (let row = 0; row <= (grid.length - 4); row++) {
+          if (
+            grid[row + 0][col + 0] === move &&
+            grid[row + 1][col + 1] === move &&
+            grid[row + 2][col + 2] === move &&
+            grid[row + 3][col + 3] === move
+          ) {
+              leftToRightDiagonalWin = true;
+          }
+        }
+        for (let col = grid[0].length; col >= grid[0].length - 4; col--) {
+          for(let row = 0; row <= (grid.length - 4); row++) {
+            if (
+              grid[row + 0][col - 0] === move &&
+              grid[row + 1][col - 1] === move &&
+              grid[row + 2][col - 2] === move &&
+              grid[row + 3][col - 3] === move
+            ) {
+                rightToLeftDiagonalWin = true;
+            }
+          }
+        }
+      }
+
+      return (leftToRightDiagonalWin || rightToLeftDiagonalWin);
+    }
 
 
-    if (checkHorizontalWin("X") || checkVerticalWin("X")) {
+
+    if (checkHorizontalWin("X") || checkVerticalWin("X") || checkDiagonalWin("X")) {
       return "X";
     }
-    if (checkHorizontalWin("O") || checkVerticalWin("O")) {
+    if (checkHorizontalWin("O") || checkVerticalWin("O") || checkDiagonalWin("O")) {
       return "O";
     }
 
