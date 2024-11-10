@@ -22,16 +22,43 @@ class ConnectFour {
 
     // Replace this with real commands
     Screen.addCommand('t', 'test command (remove)', ConnectFour.testCommand);
+    Screen.addCommand('w', 'Move Cursor Up', this.upCommand.bind(this));
+    Screen.addCommand('a', 'Move Cursor Left', this.leftCommand.bind(this));
+    Screen.addCommand('s', 'Move Cursor Down', this.downCommand.bind(this));
+    Screen.addCommand('d', 'Move Cursor Right', this.rightCommand.bind(this));
+    //Screen.addCommand('space', 'Place Move', this.placeMoveCommand.bind(this));
 
     this.cursor.setBackgroundColor();
     Screen.render();
   }
 
-  // Remove this
-  static testCommand() {
-    console.log("TEST COMMAND");
+  upCommand() {
+    this.cursor.resetBackgroundColor();
+    this.cursor.up();
+    this.cursor.setBackgroundColor();
+    Screen.render();
   }
 
+  leftCommand() {
+    this.cursor.resetBackgroundColor();
+    this.cursor.left();
+    this.cursor.setBackgroundColor();
+    Screen.render();
+  }
+
+  downCommand() {
+    this.cursor.resetBackgroundColor();
+    this.cursor.down();
+    this.cursor.setBackgroundColor();
+    Screen.render();
+  }
+
+  rightCommand() {
+    this.cursor.resetBackgroundColor();
+    this.cursor.right();
+    this.cursor.setBackgroundColor();
+    Screen.render();
+  }
   static checkWin(grid) {
 
     // Return 'X' if player X wins
