@@ -112,6 +112,14 @@ class ConnectFour {
       return "O";
     }
 
+    let emptySpaces = grid.flat().filter(cell => cell === " ").length;
+
+    if (emptySpaces > 0) {
+      return false;
+    } else {
+      return "T";
+    }
+
   }
 
   static endGame(winner) {
