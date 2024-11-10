@@ -71,6 +71,25 @@ class ConnectFour {
       return false;
     }
 
+    let checkDiagonalWin = (move) => {
+      let leftDiagonalWin = null;
+      let rightDiagonalWin = null;
+
+      for (let col = 0; col <= (grid[0].length - 4); col++) {
+        for (let row = 0; row <= (grid.length - 4); row++) {
+          if (
+            grid[row + 0][col + 0] === move &&
+            grid[row + 1][col + 1] === move &&
+            grid[row + 2][col + 2] === move &&
+            grid[row + 3][col + 3] === move
+          ) {
+              leftDiagonalWin = true;
+          }
+        }
+        for (let col = grid[0].length; col >= grid[0].
+      }
+    }
+
 
 
     if (checkHorizontalWin("X") || checkVerticalWin("X")) {
