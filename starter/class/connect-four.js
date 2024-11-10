@@ -26,10 +26,11 @@ class ConnectFour {
     Screen.addCommand('a', 'Move Cursor Left', this.leftCommand.bind(this));
     Screen.addCommand('s', 'Move Cursor Down', this.downCommand.bind(this));
     Screen.addCommand('d', 'Move Cursor Right', this.rightCommand.bind(this));
-    //Screen.addCommand('space', 'Place Move', this.placeMoveCommand.bind(this));
+    Screen.addCommand('space', 'Place Move', this.placeMoveCommand.bind(this));
 
     this.cursor.setBackgroundColor();
     Screen.render();
+    Screen.printCommands();
   }
 
   upCommand() {
@@ -59,6 +60,32 @@ class ConnectFour {
     this.cursor.setBackgroundColor();
     Screen.render();
   }
+
+  placeMoveCommand() {
+    let { row, col } = this.cursor;
+    if (this.grid[row][col] === " ") {
+      this.grid[row][col] = this.playerTurn;
+      Screen.setGrid(row, col, this.playerTurn);
+
+      const winner = ConnectFour.checkWin(this.grid);
+
+      if (winner) {
+        ConnectFour.endGame(winner);
+        return;
+      }
+
+      this.playerTurn = this.playerTurn === "O" ? "X" : "O";
+      Screen.setMessage(`Player ${this.playerTurn}'s turn`);
+      Screen.render();
+
+    } else {
+      Screen.setMessage(`Cell is already occupied, place Move on another Cell`);
+      Screen.render();
+    }
+  }
+
+    
+
   static checkWin(grid) {
 
     // Return 'X' if player X wins
