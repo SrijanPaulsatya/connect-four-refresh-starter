@@ -39,6 +39,30 @@ class ConnectFour {
     // Return 'T' if the game is a tie
     // Return false if the game has not ended
 
+    let checkHorizontalWin = (move) => {
+      for (let row in grid) {
+        for(let i = 0; i < (grid[row].length - 4); i++) {
+          if (
+            grid[row][i + 0] === move &&
+            grid[row][i + 1] === move &&
+            grid[row][i + 2] === move &&
+            grid[row][i + 3] === move
+          ) {
+              return true;
+          }
+        }
+      }
+      return false;
+    }
+
+
+    if (checkHorizontalWin("X")) {
+      return "X";
+    }
+    if (checkHorizontalWin("O")) {
+      return "O";
+    }
+
   }
 
   static endGame(winner) {
